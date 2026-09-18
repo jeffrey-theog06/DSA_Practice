@@ -1,0 +1,38 @@
+1. Why does the array index start at zero?
+
+Array indices start at zero because **an index does not represent the position of an element, but rather 
+its memory offset from the starting address of the array.
+
+To find the exact memory address of an element, the computer uses a simple pointer arithmetic formula:
+                    Address of Element = Base address +  (Index x Size of data Type)
+
+• If indices started at 1, the formula would require a subtraction step: Base Address + ((Index - 1) * Size).
+• Starting at 0 eliminates this extra subtraction, saving CPU cycles and optimizing performance.
+
+2. Why does the array stop at n-1 and not n?
+
+The array stops at n-1 as a direct mathematical consequence of zero-based indexing.
+If an array has a size of n (meaning it contains exactly n elements) and you begin counting your offsets 
+from 0, the elements will map out as follows:
+
+• 1st element: Offset 0
+• 2nd element: Offset 1
+• 3rd element: Offset 2
+• n-th element: Offset n-1
+
+If you tried to access index n, you would actually be reaching for the (n+1)-th element, which lies outside 
+the allocated memory space of the array. This causes an array index out of bounds error or a segmentation fault.
+
+3. What is the time complexity of accessing an array element? Justify your answer.
+
+The time complexity of accessing an array element is O(1) (Constant Time).
+
+Justification
+
+Array elements are stored in contiguous (sequential) memory locations, and each element occupies the exact 
+same number of bytes. Because of this structure, the computer does not need to traverse the array or look 
+through other elements to find the one you want.
+
+Instead, the CPU uses the mathematical formula mentioned in question 1 to calculate the exact hardware memory
+address instantly. Since this calculation takes the exact same number of steps regardless of whether you are 
+accessing the first element, the middle element, or the last element, the operation runs in constant time.
